@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'contacts',
+    'frontend',
     'rest_framework',
 ]
 
@@ -81,7 +82,7 @@ WSGI_APPLICATION = 'contactmanager.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': config('DB_ENGINE'),
-        'NAME': BASE_DIR / config('DB_NAME'),
+        'NAME': str(BASE_DIR / config('DB_NAME')), 
     }
 }
 
