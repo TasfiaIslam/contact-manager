@@ -1,20 +1,45 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {getContacts} from '../../actions/contacts';
 
 export class Contacts extends Component {
-    static PropTypes =  {
+    static propTypes =  {
         contacts: PropTypes.array.isRequired
-    }
+    };
     componentDidMount(){
         this.props.getContacts();
     }
     render() {
         return (
-            <div>
-                <h1>Contacts List</h1>
-            </div>
+            <Fragment>
+                <h2>Contacts</h2>
+                <table className="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Mobile</th>
+                            <th/>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        { this.props.contacts.map( contact => (
+                            <tr key={contact.id}>
+                                <td>{contact.id}</td>
+                                <td>{contact.first_name}</td>
+                                <td>{contact.last_name}</td>
+                                <td>{contact.email}</td>
+                                <td>{contact.mobile}</td>
+                                <td><button className="btn btn-danger btn-sm">
+                                    Delete</button></td>
+                            </tr>
+                        )) }
+                    </tbody>
+                </table> 
+            </Fragment>
         )
     }
 }
@@ -23,4 +48,5 @@ const mapStateToProps = state => ({
     contacts: state.contacts.contacts
 });
 
-export default connect(mapStateToProps, {getContacts})(Contacts);
+export default connect(mapStateToProps, {getContacts})
+(Contacts);
