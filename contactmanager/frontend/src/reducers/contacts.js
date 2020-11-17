@@ -1,17 +1,22 @@
-import {GET_CONTACTS} from '../actions/types.js';
+import { GET_CONTACTS, DELETE_CONTACT } from "../actions/types.js";
 
 const initialState = {
-    contacts: []
+  contacts: [],
 };
 
-export default function(state = initialState, action){
-    switch(action.type){
-        case GET_CONTACTS:
-            return{
-                ...state,
-                contacts: action.payload
-            }
-        default:
-            return state;
-    }
+export default function (state = initialState, action) {
+  switch (action.type) {
+    case GET_CONTACTS:
+      return {
+        ...state,
+        contacts: action.payload,
+      };
+    case DELETE_CONTACT:
+      return {
+        ...state,
+        contacts: state.contacts.filter((lead) => lead.id !== action.payload),
+      };
+    default:
+      return state;
+  }
 }
