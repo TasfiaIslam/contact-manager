@@ -22,6 +22,12 @@ export class Form extends Component {
     const { first_name, last_name, email, mobile } = this.state;
     const contact = { first_name, last_name, email, mobile };
     this.props.addContact(contact);
+    this.setState({
+      first_name: "",
+      last_name: "",
+      email: "",
+      mobile: "",
+    });
   };
 
   render() {
