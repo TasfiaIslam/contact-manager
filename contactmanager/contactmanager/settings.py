@@ -43,7 +43,13 @@ INSTALLED_APPS = [
     'contacts',
     'frontend',
     'rest_framework',
+    'knox',
+    'accounts',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',)
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -82,7 +88,7 @@ WSGI_APPLICATION = 'contactmanager.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': config('DB_ENGINE'),
-        'NAME': str(BASE_DIR / config('DB_NAME')), 
+        'NAME': str(BASE_DIR / config('DB_NAME')),
     }
 }
 
